@@ -15,7 +15,7 @@ def recommend():
     """Respond with index page."""
     user_input = request.form['beer']
     suggested = get_suggestions(user_input)
-    return render_template('index.html', suggested=suggested)
+    return render_template('results.html', user_input=user_input, suggested=suggested)
 
 @app.route('/query', methods=['POST', 'GET'])
 def query():
