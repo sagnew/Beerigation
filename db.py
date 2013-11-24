@@ -49,4 +49,18 @@ def sqlType(beerName):
 		beers.append(row[0])
 	return beers
 
-sqlVoter("Alena")
+def sqlCustom(query):
+	
+	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+
+	cursor = db.cursor()
+	beers = []
+	cursor.execute(query)
+	db.commit()
+	numrows = int(cursor.rowcount)
+	for x in range(0,numrows):
+		row = cursor.fetchone()
+		beers.append(row)
+	return beers
+
+sqlCustom("select b.name from beer b where b.type in (select type from beer where name='Zwickelbier') group by b.name;")
