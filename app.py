@@ -1,10 +1,11 @@
 import os
 import json
 from flask import Flask, render_template, request
-from beer_utils import get_suggestions, execute_query
+import db
+from arrayOfBeers import arrayOfBeers
 
 #set up a list of all beers for autocompletions
-autocompletions = ["Anchor Steam", "Yuengling", "Microwaved Coors Light"]
+autocompletions = arrayOfBeers
 
 app = Flask(__name__)
 
@@ -19,12 +20,12 @@ def recommend():
     user_input = request.form['beer']
     query_type = request.form['querytype']
     suggestions = ["Nothing"]
-   # if query_type == "0":
-   #     suggestions = get_suggestions_by_user_ratings(user_input)
-   # elif query_type == "1":
-   #     suggestions = get_suggestions_by_beer_type(user_input)
-   # else:
-   #     suggestions = get_suggestions_by_brewery(user_input)
+    if query_type == "0":
+        suggestions = db.sqlVoter(user_input)
+    elif query_type == "1":
+        suggestions = db.sqlManf(user_input)
+    else:
+        suggestions = db.sqlType(user_input)
     suggestions = ["Guiness stout", "Lucky Lager", "Newcastle Brown Ale"]
     return render_template('results.html', user_input=user_input, suggestions=suggestions, autocompletions=json.dumps(autocompletions))
 
