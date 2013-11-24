@@ -14,7 +14,14 @@ def index():
 def recommend():
     """Respond with index page."""
     user_input = request.form['beer']
-    suggestions = get_suggestions(user_input)
+    query_type = request.form['querytype']
+    suggestions = ["Nothing"]
+   # if query_type == "0":
+   #     suggestions = get_suggestions_by_user_ratings(user_input)
+   # elif query_type == "1":
+   #     suggestions = get_suggestions_by_beer_type(user_input)
+   # else:
+   #     suggestions = get_suggestions_by_brewery(user_input)
     suggestions = ["Guiness stout", "Lucky Lager", "Newcastle Brown Ale"]
     return render_template('results.html', user_input=user_input, suggestions=suggestions)
 
