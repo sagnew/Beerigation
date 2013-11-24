@@ -5,7 +5,7 @@ import db
 from arrayOfBeers import arrayOfBeers
 
 #set up a list of all beers for autocompletions
-autocompletions = arrayOfBeers
+autocompletions = arrayOfBeers()
 
 app = Flask(__name__)
 
