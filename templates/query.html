@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Beerigation</title>
+
+        <link rel="stylesheet" href="static/foundation/css/normalize.css">
+        <link rel="stylesheet" href="static/foundation/css/foundation.css">
+        <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <link href="static/css/custom.css" rel="stylesheet">
+
+    </head>
+    <body>
+        {% block content %}
+        <div class="row">
+
+            <div id='logo' class="large-12 columns">
+
+                <img src="/static/imgs/logo.png" alt="Beerigation">
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="large-12 columns">
+                <div class="large-12 columns panel callout">
+                    <h4> Imielinski wants to have direct access to the database. Although this is an extreme security risk, I'll let you make any query you want! Just don't tell the hipsters on hackernews! </h4>
+                </div>
+                <div class="row">
+
+                    <form method="POST" action="/execute">
+
+                        <div class="large-6 columns">
+                            <textarea id="query" name="query" rows="25">Enter query here</textarea>
+                            <div class="row">
+                                <button type='submit' class='large-12 columns button'>Execute query</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <textarea class="large-6 columns" id="displayresults" rows="25">{% if result %}{{ result }}{% endif %}</textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endblock %}
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="static/foundation/js/vendor/custom.modernizr.js"></script>
+        <script src="static/foundation/js/foundation.min.js"></script>
+        <script src="static/js/interactivity.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>
+
