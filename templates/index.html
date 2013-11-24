@@ -1,47 +1,72 @@
-<!doctype html>
-<html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
 
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Beerigation</title>
 
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="static/js/interactivity.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <link rel="stylesheet" href="static/foundation/css/normalize.css">
+        <link rel="stylesheet" href="static/foundation/css/foundation.css">
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
-        <link href="static/css/bootstrap.css" rel="stylesheet">
-    </head>
+        <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
+    </head>
     <body>
         {% block content %}
-        <div class="container" align="center">
+        <div class="row">
 
-            <div class="row">
-                <div id="logodiv" class="span8 offset2"/>
-                    <img src="/static/imgs/logo.png" alt="Beerigation">
-                </div>
+            <div id='logo' class="large-12 columns">
+
+                <img src="/static/imgs/logo.png" alt="Beerigation">
+
             </div>
-            <br>
 
-            <div class="row" id="recommendation">
+        </div>
 
-                <div id='create_session_forms' class='hero-unit span8 offset2'>
-                    <form method="POST" action="/recommend">
-                        <h2> Enter a beer that you like, and I will recommend similar ones </h2>
-                        <div class="row prompt">
-                            <div class="ui-widget">
-                                <label for="beer"></label>
-                                <input type="text" name="beer"  id="beer" placeholder="What beer do you like?">
+        <div class="row">
+
+            <div class="large-12 columns">
+
+                <div class="row">
+
+                    <div class="panel callout large-7 columns">
+
+                        <form method="POST" action="/recommend">
+                            <h3> Enter a beer that you like, and I will recommend similar ones </h3>
+                            <div class="row prompt">
+                                <div class="ui-widget">
+                                    <label for="beer"></label>
+                                    <input type="text" name="beer" id="beer" placeholder="What beer do you like?">
+                                </div>
                             </div>
-                        </div>
-                        <button type='submit' class='button'>Get recommendations</button>
-                    </form>
+                            <button type='submit' class='button'>Get recommendations</button>
+                        </form>
+
+                    </div>
+
+                    <div class="large-5 columns">
+
+                        <h3>Sidebar Five Columns</h3>
+
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
+
         {% endblock %}
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="static/foundation/js/vendor/custom.modernizr.js"></script>
+        <script src="static/foundation/js/foundation.min.js"></script>
+        <script src="static/js/interactivity.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
     </body>
 </html>
