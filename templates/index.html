@@ -7,28 +7,33 @@
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="static/js/interactivity.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
+        <link href="static/css/bootstrap.css" rel="stylesheet">
     </head>
 
     <body>
         {% block content %}
-        <div class="container">
+        <div class="container" align="center">
 
             <div class="row">
-                <div id="logodiv" class="span8 offset2" align="center"/>
-                    <img src="/static/imgs/logo.png" alt="Git Rumble">
+                <div id="logodiv" class="span8 offset2"/>
+                    <img src="/static/imgs/logo.png" alt="Beerigation">
                 </div>
             </div>
             <br>
 
-            <div class="row" id="recommendation" align="center">
+            <div class="row" id="recommendation">
 
-                <div id='create_session_forms' class='hero-unit span8 offset4'>
+                <div id='create_session_forms' class='hero-unit span8 offset2'>
                     <form method="POST" action="/recommend">
                         <h2> Enter a beer that you like, and I will recommend similar ones </h2>
                         <div class="row prompt">
-                            <input type="text" name="beer"  id="beer" placeholder="What beer do you like?">
+                            <div class="ui-widget">
+                                <label for="beer"></label>
+                                <input type="text" name="beer"  id="beer" placeholder="What beer do you like?">
+                            </div>
                         </div>
                         <button type='submit' class='button'>Get recommendations</button>
                     </form>
