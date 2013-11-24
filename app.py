@@ -13,9 +13,10 @@ def index():
 @app.route('/recommend', methods=['POST', 'GET'])
 def recommend():
     """Respond with index page."""
-    user_beer = request.form['beer']
-    suggested_beers = get_beer_suggestions(user_beer)
-    return render_template('index.html', suggested_beers=suggested_beers)
+    user_input = request.form['user_input']
+    suggested = get_suggestions(user_input)
+    return render_template('index.html', suggested=suggested)
+
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
