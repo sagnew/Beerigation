@@ -1,14 +1,17 @@
 import os
+import json
 from flask import Flask, render_template, request
 from beer_utils import get_suggestions, execute_query
 
+#set up a list of all beers for autocompletions
+autocompletions = ["Anchor Steam", "Yuengling", "Microwaved Coors Light"]
 
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
     """Respond with index page."""
-    return render_template('index.html')
+    return render_template('index.html', autocompletions=json.dumps(autocompletions))
 
 @app.route('/recommend', methods=['POST', 'GET'])
 def recommend():
@@ -23,7 +26,7 @@ def recommend():
    # else:
    #     suggestions = get_suggestions_by_brewery(user_input)
     suggestions = ["Guiness stout", "Lucky Lager", "Newcastle Brown Ale"]
-    return render_template('results.html', user_input=user_input, suggestions=suggestions)
+    return render_template('results.html', user_input=user_input, suggestions=suggestions, autocompletions=json.dumps(autocompletions))
 
 @app.route('/query', methods=['POST', 'GET'])
 def query():
