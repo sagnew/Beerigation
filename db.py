@@ -1,19 +1,52 @@
 import MySQLdb
 
-def sqlCreator(beerName, searchby):
+def sqlVoter(beerName):
+
+	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+	cursor = db.cursor()
+	beers = []
+	query ="select b.name from likes l, beer b where l.drinkerID in (select d.id from likes l, drinker d where d.id = l.drinkerID and (select id from beer where     name='" + beerName + "')  = l.beerID) and b.id=l.beerID group by b.name"
+	cursor.execute(query);
+	db.commit()
+	numrows = int(cursor.rowcount)
+	for x in range(0,numrows):
+		row = cursor.fetchone()
+		beers.append(row[0])
+	return beers
+
+def sqlManf(beerName):
 
 	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
 
 	cursor = db.cursor()
-
-	if searchby == 0:
-		query ="select b.name from likes l, beer b where l.drinkerID in (select d.id from likes l, drinker d where d.id = l.drinkerID and (select id from beer where     name='" + beerName + "')  = l.beerID) and b.id=l.beerID group by b.name"
-		print query
-		cursor.execute(query);
-		db.commit()
-		numrows = int(cursor.rowcount)
+	beers = []
+	query="select b.name from beer b where b.manf in (select manf from beer where name='" + beerName + "') group by b.name"
+	cursor.execute(query);
+	db.commit()
+	numrows = int(cursor.rowcount)
 	for x in range(0,numrows):
 		row = cursor.fetchone()
-		print row[0]
+		beers.append(row[0])
+	return beers
 
-sqlCreator("Zwickelbier", 0)
+def sqlType(beerName):
+
+	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+
+	cursor = db.cursor()
+	beers = []
+	cursor.execute("select type from beer where name='" + beerName + "'")
+	db.commit()
+	row = cursor.fetchone()
+	if not row[0]:
+		return beers
+	query="select b.name from beer b where b.type in (select type from beer where name='" + beerName + "') group by b.name;"
+	cursor.execute(query);
+	db.commit()
+	numrows = int(cursor.rowcount)
+	for x in range(0,numrows):
+		row = cursor.fetchone()
+		beers.append(row[0])
+	return beers
+
+sqlVoter("Alena")
