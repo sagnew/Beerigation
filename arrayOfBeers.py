@@ -8,5 +8,3 @@ def arrayOfBeers():
 			beer.append(row[1])
 	print beer
 	return beer
-
-arrayOfBeers()

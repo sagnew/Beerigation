@@ -20,13 +20,14 @@ def recommend():
     user_input = request.form['beer']
     query_type = request.form['querytype']
     suggestions = ["Nothing"]
+
     if query_type == "0":
         suggestions = db.sqlVoter(user_input)
     elif query_type == "1":
-        suggestions = db.sqlManf(user_input)
-    else:
         suggestions = db.sqlType(user_input)
-    suggestions = ["Guiness stout", "Lucky Lager", "Newcastle Brown Ale"]
+    else:
+        suggestions = db.sqlManf(user_input)
+
     return render_template('results.html', user_input=user_input, suggestions=suggestions, autocompletions=json.dumps(autocompletions))
 
 @app.route('/query', methods=['POST', 'GET'])
@@ -41,7 +42,8 @@ def execute():
     result = ""
     if query:
         result = execute_query(query)
-    result = "No results!"
+    else:
+        result = "No query!"
     return render_template('query.html', result=result)
 
 if __name__ == '__main__':
