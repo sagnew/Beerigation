@@ -68,6 +68,19 @@
         <script src="static/js/interactivity.js"></script>
         <script>
             $(document).foundation();
+            $(function() {
+                var availableBeers = [];
+                var i;
+                var autocompletions = function(data){
+                    for(i = 0; i < data.length; i += 1){
+                        availableBeers.push(data[i]);
+                    }
+                }
+                autocompletions({{ autocompletions|safe }});
+                $( "#beer" ).autocomplete({
+                    source: availableBeers
+                });
+            });
         </script>
     </body>
 </html>
