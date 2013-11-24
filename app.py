@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request
-from beer_utils import get_beer_suggestions
+from beer_utils import get_suggestions, execute_query
 
 
 app = Flask(__name__)
@@ -13,18 +13,18 @@ def index():
 @app.route('/recommend', methods=['POST', 'GET'])
 def recommend():
     """Respond with index page."""
-    user_input = request.form['user_input']
+    user_input = request.form['beer']
     suggested = get_suggestions(user_input)
     return render_template('index.html', suggested=suggested)
 
 @app.route('/query', methods=['POST', 'GET'])
-def index():
+def query():
     """Allow the user to query our database."""
     query = request.form['query']
     result = ""
     if query:
         result = execute_query(query)
-    return render_template('index.html', result=result)
+    return render_template('query.html', result=result)
 
 
 if __name__ == '__main__':
