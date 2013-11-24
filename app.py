@@ -17,6 +17,15 @@ def recommend():
     suggested = get_suggestions(user_input)
     return render_template('index.html', suggested=suggested)
 
+@app.route('/query', methods=['POST', 'GET'])
+def index():
+    """Allow the user to query our database."""
+    query = request.form['query']
+    result = ""
+    if query:
+        result = execute_query(query)
+    return render_template('index.html', result=result)
+
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
