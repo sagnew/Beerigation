@@ -12,7 +12,7 @@ def sqlVoter(beerName):
 	for x in range(0,numrows):
 		row = cursor.fetchone()
 		beers.append(row[0])
-	return beers
+	return beers, query
 
 def sqlManf(beerName):
 
@@ -27,7 +27,7 @@ def sqlManf(beerName):
 	for x in range(0,numrows):
 		row = cursor.fetchone()
 		beers.append(row[0])
-	return beers
+	return beers, query
 
 def sqlType(beerName):
 
@@ -47,7 +47,7 @@ def sqlType(beerName):
 	for x in range(0,numrows):
 		row = cursor.fetchone()
 		beers.append(row[0])
-	return beers
+	return beers, query
 
 def sqlCustom(query):
 	
@@ -63,4 +63,3 @@ def sqlCustom(query):
 		beers.append(row)
 	return beers
 
-sqlCustom("select b.name from beer b where b.type in (select type from beer where name='Zwickelbier') group by b.name;")
