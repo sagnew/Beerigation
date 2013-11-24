@@ -21,12 +21,17 @@ def recommend():
 @app.route('/query', methods=['POST', 'GET'])
 def query():
     """Allow the user to query our database."""
+    return render_template('query.html', result="Results display here")
+
+@app.route('/execute', methods=['POST', 'GET'])
+def execute():
+    """Allow the user to query our database."""
     query = request.form['query']
     result = ""
     if query:
         result = execute_query(query)
+    result = "No results!"
     return render_template('query.html', result=result)
-
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
