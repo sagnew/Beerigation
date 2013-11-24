@@ -2,7 +2,7 @@ import MySQLdb
 
 def sqlVoter(beerName):
 
-	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+	db = MySQLdb.connect(host="localhost", user="root", passwd="faBSb04A", db="testDB")
 	cursor = db.cursor()
 	beers = []
 	query ="select b.name from likes l, beer b where l.drinkerID in (select d.id from likes l, drinker d where d.id = l.drinkerID and (select id from beer where     name='" + beerName + "')  = l.beerID) and b.id=l.beerID group by b.name"
@@ -16,7 +16,7 @@ def sqlVoter(beerName):
 
 def sqlManf(beerName):
 
-	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+	db = MySQLdb.connect(host="localhost", user="root", passwd="faBSb04A", db="testDB")
 
 	cursor = db.cursor()
 	beers = []
@@ -31,7 +31,7 @@ def sqlManf(beerName):
 
 def sqlType(beerName):
 
-	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+	db = MySQLdb.connect(host="localhost", user="root", passwd="faBSb04A", db="testDB")
 
 	cursor = db.cursor()
 	beers = []
@@ -50,8 +50,8 @@ def sqlType(beerName):
 	return beers
 
 def sqlCustom(query):
-	
-	db = MySQLdb.connect(host="localhost", user="root", passwd="", db="testDB")
+
+	db = MySQLdb.connect(host="localhost", user="root", passwd="faBSb04A", db="testDB")
 
 	cursor = db.cursor()
 	beers = []
